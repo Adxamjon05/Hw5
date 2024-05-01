@@ -13,6 +13,25 @@ bool isTriangle(T side1, T side2, T side3){
 }
 
 
+//Question 2
+template <typename T>
+void encrypt(T& msg, int key){
+    int lens=msg.length();
+    for(int i =0; i<lens; i++){
+        if (int(msg[i])!=32){
+            if(int(msg[i])<122 and int(msg[i])+key>122){
+                msg[i]=char((int(msg[i])+key)%122+97-1);
+            }
+            else if (int(msg[i])<90 and int(msg[i])+key>90){
+                msg[i]=char((int(msg[i])+key)%90+65-1);
+            } else{
+                msg[i]=char(int(msg[i])+key);
+            }
+        }
+    }
+}
+
+
 
 int main() {
 
@@ -25,6 +44,16 @@ int main() {
     } else{
         cout<<"Triangle can NOT be formed with these sides"<<endl;
     }
+
+
+
+    //Question 2
+    string msg;
+    int key;
+    getline(cin, msg);
+    cin>>key;
+    encrypt(msg, key);
+    cout<<msg<<endl;
 
 
 
